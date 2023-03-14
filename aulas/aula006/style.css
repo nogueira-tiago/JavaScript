@@ -27,6 +27,13 @@ div{
     text-align:center;
 }
 
+img{
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background-size: auto;
+}
+
 footer{
     color: white;
     text-align: center;
