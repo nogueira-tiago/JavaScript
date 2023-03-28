@@ -1,0 +1,30 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 , h2{
+    text-align: center;
+    font-size: 3em;
+}
+
+button{
+    height: 100px;
+    width: 250px;
+    background-color: rgb(0, 255, 102);
+    border-radius: 20px;
+    border-style: none;
+    display: block;
+    margin: auto;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.262);
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#aumentar{
+    background-color: rgb(0, 255, 102);
+}
+
+#diminuir{
+    background-color: rgb(255, 0, 0);
+}
