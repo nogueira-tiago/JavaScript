@@ -25,6 +25,12 @@ button{
     background-color: rgb(0, 255, 102);
 }
 
-#diminuir{
-    background-color: rgb(255, 0, 0);
+#salvar{
+    background-color: rgb(0, 242, 255);
+}
+h3{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
 }
