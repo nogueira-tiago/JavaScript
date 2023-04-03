@@ -3,7 +3,14 @@ let soma = 0
 let mensagem = ""
 let mensagemSoma = document.getElementById('soma')
 let mensagemCarta = document.getElementById('cartas')
-
+let emJogo = true
+let acabou = false
+let jogador = {
+    nome: "pessoa",
+    dinheiro: 200
+}
+let jogadorP = document.getElementById('jogador')
+jogadorP.textContent = jogador.nome + ": R$" + jogador.dinheiro
 let legenda = document.getElementById('p1')
 
 function jogar(){
@@ -24,20 +31,23 @@ function retornar(){
     if(soma <= 20){
         mensagem = "Você quer mais uma carta ?"
     }else if(soma == 21){
-        mensagem = "Você tem um Blackjack"
+        mensagem = "Você tem um Blackjack!"
+        acabou = true
     }else{
         mensagem = "Você perdeu!"
+        emJogo = false
     }
     legenda.textContent = mensagem
 
 }
 
 function novaCarta(){
-    let novaCarta = cartaAleatoria()
+    if(acabou ===false && emJogo ===true){
+        let novaCarta = cartaAleatoria()
     soma += novaCarta
     cartas.push(novaCarta)
     retornar()
-    
+    }
 }
 
 function cartaAleatoria(){
