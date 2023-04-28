@@ -71,35 +71,14 @@ const menu = [{
 }]
 
 const centro = document.querySelector(".centro-seção");
-const btns = document.querySelectorAll(".btn-filtro");
+const btnsContainer = document.querySelectorAll(".btn-container")
 
 window.addEventListener("DOMContentLoaded", function(){
-    mostrarItensMenu(menu);
-    const categorias = menu.reduce(function (valores,item){
-        if(!valores.includes(item.categoria)){
-            valores.push(item.categoria);
-        }return valores;
-    })
-})
-
-btns.forEach(function(btn){
-    btn.addEventListener("click",function(elemento){
-        const categoria = elemento.currentTarget.dataset.id;
-        const categoriaMenu = menu.filter(function(itensMenu){
-            if(itensMenu.categoria === categoria){
-                return itensMenu
-            }
-        });
-        if(categoria==="tudo"){
-            mostrarItensMenu(menu)
-        }else{
-            mostrarItensMenu(categoriaMenu)
-        }
-    })
+    mostrarItensMenu(menu);   
 })
 
 function mostrarItensMenu(itensMenu){
-    let mostrarMenu = itensMenu.map;(function(item){
+    let mostrarMenu = itensMenu.map(function(item){
         return `<article class="item-menu">
         <img src=${item.img} alt=${item.titulo} class="foto">
         <div class="informação-item">
@@ -109,8 +88,41 @@ function mostrarItensMenu(itensMenu){
             </header>
             <p class="texto-item">${item.descrição}</p>
         </div>
-    </article>`
+    </article>`;
     });
-    mostrarMenu = mostrarMenu.join("")
-    centro.innerHTML = mostrar
+    mostrarMenu = mostrarMenu.join("");
+    centro.innerHTML = mostrarMenu
+}
+
+function mostrarBtnsMenu(){
+    const categorias = menu.reduce(
+        function (valores,item){
+        if(!valores.includes(item.categoria)){
+            valores.push(item.categoria);
+        }return valores;
+        },
+        ["tudo"]
+    );
+    const btnsCategoria = categorias.map(function(categoria){
+        return `<button type="button" class="btn-filtro" data-id=${categoria}>${categoria}
+        </button>`
+    }).join("");
+    btnsContainer.innerHTML = btnsCategoria;
+    const btns = document.querySelectorAll(".btn-filtro");
+
+    btns.forEach(function(btn){
+        btn.addEventListener("click",function(elemento){
+            const categoria = elemento.currentTarget.dataset.id;
+            const categoriaMenu = menu.filter(function(itensMenu){
+                if(itensMenu.categoria === categoria){
+                    return itensMenu
+                }
+            });
+            if(categoria==="tudo"){
+                mostrarItensMenu(menu)
+            }else{
+                mostrarItensMenu(categoriaMenu)
+            }
+        })
+})
 }
